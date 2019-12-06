@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-namespace NoNullProject.Model
-{
-    class Professionists
+// namespace NoNullProject.Model
+namespace ADOExamples{
+    public class Professionists
     {
         public int ProfId { get; set; }
         public string LastName { get; set; }
@@ -15,10 +15,10 @@ namespace NoNullProject.Model
         public string Region { get; set; }
         public string PostalCode { get; set; }
         public int destinationId  { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Mail { get; set; }
-        public int MinAvalaibility  { get; set; }
-        public int MaxAvalaibility  { get; set; }
+        public string MinAvalaibility  { get; set; }
+        public string MaxAvalaibility  { get; set; }
 
     }
 }

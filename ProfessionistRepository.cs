@@ -38,6 +38,63 @@ namespace ADOExamples
             return professionist;
         }
 
+        //Insert\\
+        public void InsertNewProfessionist(Professionists pro)
+        {
+            using (SqlConnection con = new SqlConnection(Connector.CONN_SQLServer))
+            {
+                try
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(Connector.INSERT_PROFESSIONIST, con))
+                    {
+                        cmd.Parameters.AddWithValue("@lastname", pro.LastName);
+                        cmd.Parameters.AddWithValue("@firstname", pro.FirstName);
+                        cmd.Parameters.AddWithValue("@profession", pro.Profession);
+                        cmd.Parameters.AddWithValue("@birthdate", pro.Birthdate);
+                        cmd.Parameters.AddWithValue("@address", pro.Address);
+                        cmd.Parameters.AddWithValue("@city", pro.City);
+                        cmd.Parameters.AddWithValue("@region", pro.Region);
+                        cmd.Parameters.AddWithValue("@postalcode", pro.PostalCode);
+                        cmd.Parameters.AddWithValue("@destination", pro.DestinationId);
+                        cmd.Parameters.AddWithValue("@phone", pro.Phone);
+                        cmd.Parameters.AddWithValue("@mail", pro.Mail);
+                        cmd.Parameters.AddWithValue("@minavailability", pro.MinAvalaibility);
+                        cmd.Parameters.AddWithValue("@maxavailability", pro.MaxAvalaibility);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    System.Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        //Delete\\
+        public void DeleteProfessionistByID(int id)
+        {
+            using (SqlConnection con = new SqlConnection(Connector.CONN_SQLServer))
+            {
+                con.Open();
+                SqlTransaction tran = con.BeginTransaction();
+                try
+                {
+                    System.Console.WriteLine("Open Delete");
+                    SqlCommand cmd = new SqlCommand(Connector.DELETE_PROFESSIONIST_BY_ID, con, tran);
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                    tran.Commit();
+                }
+                catch (SqlException e)
+                {
+                    tran.Rollback();
+                    System.Console.WriteLine(e.Message);
+                }
+            }
+        }
 
         // public List<Employee> SearchByTitle(string title)
         // {

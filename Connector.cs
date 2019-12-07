@@ -5,7 +5,7 @@ public static class Connector
 
     //public  static string CONN_SQLServer { get; }  = "Server=192.168.0.137;Database=NoNullProject;User Id=sa;Password=SQL_server0%;";
 
-   public  static string CONN_SQLServer { get; }  = "Server=127.0.0.1;Database=NoNullProject;User Id=sa;Password=SQL_server0%;";
+    public static string CONN_SQLServer { get; } = "Server=127.0.0.1;Database=NoNullProject;User Id=sa;Password=SQL_server0%;";
     public static string SELECT_ALL_EMPLOYEES { get; } = "SELECT * FROM HR.Employees";
     public static string SELECT_ALL_EMPLOYEES_LASTNAME_LIKE { get; } = "SELECT * FROM HR.Employees where lastname LIKE @chars";
 
@@ -21,5 +21,7 @@ public static class Connector
 
     public static string SELECT_ALL_PROFESSIONIST_LASTNAME_LIKE = "SELECT * FROM NoNull.Professionists where lastname LIKE @chars";
 
+    public static string INSERT_PROFESSIONIST = "INSERT INTO NoNull.Professionists VALUES(@lastname,@firstname,@profession,@birthdate,@address,@city,@region,@postalcode,@destination,@phone,@mail,@minavailability,@maxavailability)";
 
+    public static string DELETE_PROFESSIONIST_BY_ID = "DELETE FROM NoNull.Professionists WHERE profid = @id";
 }

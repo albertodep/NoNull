@@ -15,7 +15,7 @@ namespace ADOExamples
             foreach (var item in allProf)
             
             {
-                Console.WriteLine(item.FirsttName + " " + item.LastName);
+                Console.WriteLine(item.FirstName + " " + item.LastName);
             }
             try
             {
@@ -25,6 +25,18 @@ namespace ADOExamples
             {
                 System.Console.WriteLine(e.Message);
             }
+
+            //Insert\\
+            Professionists pro1 = new Professionists("Franconi", "Alessio", "Doctor", "1963/09/02", "12 Ave", "Los Angeles", "", "22334", 2, "344-3455324", "ale@doc.com", "2 Weeks", "2 Month");
+            repo.InsertNewProfessionist(pro1);
+
+            //Delete\\
+            //repo.DeleteProfessionistByID(11);
+
+
+
+
+
 
             //var employees = repo.AllByLastname("e");
 

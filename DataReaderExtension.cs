@@ -19,14 +19,14 @@ namespace ADOExamples
 
                     p.ProfId = reader.GetFieldValue<int>(reader.GetOrdinal("profid"));
                     p.LastName = reader.GetFieldValue<string>(reader.GetOrdinal("lastname"));
-                    p.FirsttName = reader.GetFieldValue<string>(reader.GetOrdinal("firstname"));
+                    p.FirstName = reader.GetFieldValue<string>(reader.GetOrdinal("firstname"));
                     p.Profession = reader.GetFieldValue<string>(reader.GetOrdinal("profession"));
                     p.Birthdate = reader.GetFieldValue<DateTime>(reader.GetOrdinal("birthdate"));
                     p.Address = reader.GetFieldValue<string>(reader.GetOrdinal("address"));
                     p.City = reader.GetFieldValue<string>(reader.GetOrdinal("city"));
                     p.Region = ReaderIsNull(reader, "region") ? null : reader.GetFieldValue<string>(reader.GetOrdinal("region"));
                     p.PostalCode = ReaderIsNull(reader, "postalcode") ? null : reader.GetFieldValue<string>(reader.GetOrdinal("postalcode"));
-                    p.destinationId = reader.GetFieldValue<int>(reader.GetOrdinal("destinationid"));
+                    p.DestinationId = reader.GetFieldValue<int>(reader.GetOrdinal("destinationid"));
                     p.Phone = reader.GetFieldValue<string>(reader.GetOrdinal("phone"));
                     reader.GetFieldValue<string>(reader.GetOrdinal("phone"));
                     p.Mail = reader.GetFieldValue<string>(reader.GetOrdinal("mail"));

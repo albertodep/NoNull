@@ -24,4 +24,12 @@ public static class Connector
     public static string INSERT_PROFESSIONIST = "INSERT INTO NoNull.Professionists VALUES(@lastname,@firstname,@profession,@birthdate,@address,@city,@region,@postalcode,@destination,@phone,@mail,@minavailability,@maxavailability)";
 
     public static string DELETE_PROFESSIONIST_BY_ID = "DELETE FROM NoNull.Professionists WHERE profid = @id";
+
+    public static string SELECT_ALL_REQUEST = "SELECT * FROM NoNull.Requests";
+
+    public static string SELECT_ALL_REQUEST_DESTINATION_ID = "SELECT * FROM NoNull.Requests where destinationid = @id";
+
+    public static string INSERT_REQUEST = "INSERT INTO NoNull.Requests VALUES(@reqid,@compid,@projid,@skillid,@destinationid,@beginningdate,@endingdate,@description)";
+
+    public static string DELETE_REQUEST_BY_ID = "DELETE FROM NoNull.Requests WHERE reqid = @id";
 }

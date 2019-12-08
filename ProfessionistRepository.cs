@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace ADOExamples
+namespace NoNullProject
 {
     public class ProfessionistRepository
     {
 
         public List<Professionists> All()
         {
-       //     List<Professionists> prof = new List<Professionists>();
+            //     List<Professionists> prof = new List<Professionists>();
             using (SqlCommand cmd = new SqlCommand(Connector.SELECT_ALL_PROFESSIONIST))
             {
                 return Read(cmd);
@@ -17,13 +17,13 @@ namespace ADOExamples
         }
         public List<Professionists> AllByLastname(string chars)
         {
-          //  List<Professionists> professionist = new List<Professionists>();
-                using (SqlCommand cmd = new SqlCommand(Connector.SELECT_ALL_PROFESSIONIST_LASTNAME_LIKE))
-                {
-                    cmd.Parameters.AddWithValue("@chars", "%" + chars + "%");
-                    return Read(cmd);
-                }
-  
+            //  List<Professionists> professionist = new List<Professionists>();
+            using (SqlCommand cmd = new SqlCommand(Connector.SELECT_ALL_PROFESSIONIST_LASTNAME_LIKE))
+            {
+                cmd.Parameters.AddWithValue("@chars", "%" + chars + "%");
+                return Read(cmd);
+            }
+
         }
 
         private List<Professionists> Read(SqlCommand cmd)
@@ -33,7 +33,7 @@ namespace ADOExamples
             {
                 con.Open();
                 cmd.Connection = con;
-               professionist = DataReaderExtension.SelectProfessionist(cmd, con);
+                professionist = DataReaderExtension.SelectProfessionist(cmd, con);
             }
             return professionist;
         }
@@ -114,7 +114,7 @@ namespace ADOExamples
         // }
 
 
-       
+
         // public void DeleteByID(int id)
         // {
 

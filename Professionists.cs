@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 // namespace NoNullProject.Model
-namespace ADOExamples{
+namespace NoNullProject
+{
     public class Professionists
     {
         public int ProfId { get; set; }

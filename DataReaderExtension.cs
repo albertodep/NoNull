@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-namespace ADOExamples
+namespace NoNullProject
 {
     public static class DataReaderExtension
     {
-        public static List<Professionists> SelectProfessionist(SqlCommand cmd, SqlConnection con) 
-        {                                      
+        public static List<Professionists> SelectProfessionist(SqlCommand cmd, SqlConnection con)
+        {
             List<Professionists> prof = new List<Professionists>();
 
             Console.WriteLine("got connection");
@@ -49,6 +49,33 @@ namespace ADOExamples
                 return false;
             }
         }
+        public static List<Requests> SelectRequests(SqlCommand cmd, SqlConnection con)
+        {
+            List<Requests> req = new List<Requests>();
+
+            Console.WriteLine("got connection");
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+                    var r = new Requests();
+
+                    r.ReqId = reader.GetFieldValue<int>(reader.GetOrdinal("reqid"));
+                    r.CompId = reader.GetFieldValue<int>(reader.GetOrdinal("compid"));
+                    r.ProjId = reader.GetFieldValue<int>(reader.GetOrdinal("projid"));
+                    r.SkillId = reader.GetFieldValue<int>(reader.GetOrdinal("skillid"));
+                    r.DestinationId = reader.GetFieldValue<int>(reader.GetOrdinal("destinationid"));
+                    r.BeginningDate = reader.GetFieldValue<DateTime>(reader.GetOrdinal("beginningdate"));
+                    r.EndingDate = reader.GetFieldValue<DateTime>(reader.GetOrdinal("endingdate"));
+
+                    req.Add(r);
+                }
+
+                return req;
+            }
+        }
+
 
 
     }

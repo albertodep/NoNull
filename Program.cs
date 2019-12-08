@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-namespace ADOExamples
+namespace NoNullProject
 {
     class Program
     {
@@ -13,7 +13,7 @@ namespace ADOExamples
             var allProf = repo.All();
             //var NameProf = repo.AllByLastname("e");
             foreach (var item in allProf)
-            
+
             {
                 Console.WriteLine(item.FirstName + " " + item.LastName);
             }
@@ -71,7 +71,10 @@ namespace ADOExamples
             // {
             //     Console.WriteLine(item.Title + " " + item.FirstName + " " + item.LastName);
             // }
-
+            
+            //Insert\\
+            // Professionists req1 = new Professionists("Franconi", "Alessio", "Doctor", "1963/09/02", "12 Ave", "Los Angeles", "", "22334", 2, "344-3455324", "ale@doc.com", "2 Weeks", "2 Month");
+            // repo.InsertNewProfessionist(pro1);
 
         }
     }

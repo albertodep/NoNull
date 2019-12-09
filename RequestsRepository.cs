@@ -89,5 +89,67 @@ namespace NoNullProject
                 }
             }
         }
+
+        private static string SEARCH_STRING     //generic search
+         = "SELECT * FROM NoNull.Requests AS Req";
+
+        public List<Request> Search(int? destinationid, DateTime? start, DateTime? end, List<int> skills)
+        {
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                bool andNeeded = false;
+                StringBuilder sql = new StringBuilder(SEARCH_STRING);//crea stringhe intermedie che sono più modificabili
+                if (destinationid != null)
+                {
+                    sql.Append(" WHERE destionationid = @countryId");
+                    cmd.Parameters.AddWithValue("@countryId", destinationid);
+                    andNeeded = true;
+                }
+                if (start != null && end != null)
+                {
+                    sql.Append(andNeeded ? " AND" : "WHERE");
+                    sql.Append(" beginningdate BETWEEN ( @start,@end) AND endingdate BETWEEN ( @start,@end)");
+                }
+                if (skills != null && skills.Count != 0)
+                {
+                    sql.Append(andNeeded ? " AND" : " WHERE");
+                    sql.Append(" EXISTS ( SELECT * FROM NoNull.Requests WHERE reqid = req.reqid AND skillid IN ( ");
+                    for (int i = 0; i < skills.Count; i++)
+                    {
+                        sql.Append("@skillid" + i + ",");
+                        cmd.Parameters.AddWithValue("@skillid" + i, skills[i]);
+
+                    }
+                    sql.Replace(',', ')', sql.Length - 1, 1);
+                }
+                Console.WriteLine(sql);
+                return Read(cmd);
+            }
+        }
+
+        public static string UPDATE_REQUEST_BY_ID =     //update requests by id
+        @"UPDATE NoNull.Requests 
+        SET compid=@compid, projid=@projid, skillid=@skillid, destinationid=@destinationid, beginningdate=@beginningdate, endingdate=@endingdate, description=@description 
+        Where reqid=@reqid";
+        public void UpdateReq(Requests req)
+        {
+            using (SqlConnection con = new SqlConnection(Connector.CONN_SQLServer))
+            {
+                con.Open();
+                System.Console.WriteLine("Open Update");
+                using (SqlCommand cmd = new SqlCommand(UPDATE_REQUEST_BY_ID, con))
+                {
+                    cmd.Parameters.AddWithValue("@compId", req.CompId);
+                    cmd.Parameters.AddWithValue("@projId", req.ProjId);
+                    cmd.Parameters.AddWithValue("@skillId", req.SkillId);
+                    cmd.Parameters.AddWithValue("@destinationId", req.DestinationId);
+                    cmd.Parameters.AddWithValue("@beginningDate", req.BeginningDate);
+                    cmd.Parameters.AddWithValue("@endingDate", req.EndingDate);
+                    cmd.Parameters.AddWithValue("@description", req.Description);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

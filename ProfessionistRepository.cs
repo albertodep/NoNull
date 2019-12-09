@@ -96,6 +96,36 @@ namespace NoNullProject
             }
         }
 
+        public static string UPDATE_PROFESSIONIST_BY_ID =       //update professionist by id
+        @"UPDATE NoNull.Professionists 
+        SET lastname=@lastname,firstname=@firstname,profession=@profession,birthdate=@birthdate,address=@address,city=@city,region=@region,postalcode=@postalcode,destination=@destination,phone=@phone,mail=@mail,minavailability=@minavailability,maxavailability=@maxavailability 
+        Where proid=@proid";
+        public void UpdatePro(Professionists pro)
+        {
+            using (SqlConnection con = new SqlConnection(Connector.CONN_SQLServer))
+            {
+                con.Open();
+                System.Console.WriteLine("Open Update");
+                using (SqlCommand cmd = new SqlCommand(UPDATE_PROFESSIONIST_BY_ID, con))
+                {
+                    cmd.Parameters.AddWithValue("@lastname", pro.LastName);
+                    cmd.Parameters.AddWithValue("@firstname", pro.FirstName);
+                    cmd.Parameters.AddWithValue("@profession", pro.Profession);
+                    cmd.Parameters.AddWithValue("@birthdate", pro.Birthdate);
+                    cmd.Parameters.AddWithValue("@address", pro.Address);
+                    cmd.Parameters.AddWithValue("@city", pro.City);
+                    cmd.Parameters.AddWithValue("@region", pro.Region);
+                    cmd.Parameters.AddWithValue("@postalcode", pro.PostalCode);
+                    cmd.Parameters.AddWithValue("@destination", pro.DestinationId);
+                    cmd.Parameters.AddWithValue("@phone", pro.Phone);
+                    cmd.Parameters.AddWithValue("@mail", pro.Mail);
+                    cmd.Parameters.AddWithValue("@minavailability", pro.MinAvalaibility);
+                    cmd.Parameters.AddWithValue("@maxavailability", pro.MaxAvalaibility);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
         // public List<Employee> SearchByTitle(string title)
         // {
         //     List<Employee> employees = new List<Employee>();

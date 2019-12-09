@@ -47,7 +47,7 @@ namespace NoNullProject
                     con.Open();
                     using (SqlCommand cmd = new SqlCommand(Connector.INSERT_PROFESSIONIST, con))
                     {
-                        cmd.Parameters.AddWithValue("@reqId", req.ReqId);
+                        //cmd.Parameters.AddWithValue("@reqId", req.ReqId);
                         cmd.Parameters.AddWithValue("@compId", req.CompId);
                         cmd.Parameters.AddWithValue("@projId", req.ProjId);
                         cmd.Parameters.AddWithValue("@skillId", req.SkillId);

@@ -6,7 +6,6 @@ namespace NoNullProject
 {
     public class ProfessionistRepository
     {
-
         public List<Professionists> All()
         {
             //     List<Professionists> prof = new List<Professionists>();
